@@ -64,8 +64,8 @@
 - 行銷及營運經理可以查詢所有的品牌資訊。
 
 ## 使用方法
-1. 使用備份檔 `db.backup` 還原資料庫
-2. 打開s.ipynb，將以下設定更改成自己pgadmin的設定
+1. 使用備份檔 `Dataset.backup` 還原資料庫
+2. 打開server.ipynb，將以下設定更改成自己pgadmin的設定
 ```python
 conn = psycopg2.connect(
     dbname='postgres',  # Your dbname is 'test'
@@ -76,11 +76,27 @@ conn = psycopg2.connect(
 )
 ```
 
-3. 下載s.ipynb跟c.ipynb成s.py跟c.py
-4. 接著就可以在多個cmd上輸入s.py跟c.py即可開始執行(要在同一層資料夾)，執行時要先在s.py那邊的cmd輸入port number，然後再在c.py輸入一樣的port number，接下來在client端按照提示操作即可。
+3. 下載server.ipynb跟client.ipynb成server.py跟client.py
+4. 接著就可以在多個cmd上輸入server.py跟client.py即可開始執行(要在同一層資料夾)，執行時要先在server.py那邊的cmd輸入port number，然後再在client.py輸入一樣的port number，接下來在client端按照提示操作即可。
 5. 若要測試會員功能，需要ID和密碼，這裡提供幾個選項(id, password)=(185, 6Lwgr0El) or (30897, n3EtMGHv)；如果是其他三個角色，登入密碼請輸入’starwars’。
 
 ## 程式說明
+
+1. `server.py`
+    - 伺服器端的主要執行檔。
+    - 使用 socket 建立伺服器，監聽客戶端的連線請求。
+    - 收到請求後啟動執行緒處理，確保能同時處理多個用戶的操作需求。
+    - 啟動伺服器時需指定連線的 `port number`。
+
+2. `client.py`
+    - 客戶端的主要執行檔。
+    - 連線至伺服器後可執行各項功能，如登入、查詢資料等操作。
+    - 執行時需輸入伺服器的 `port number`，並依照提示進行操作。
+
+3. `資料庫`
+    - 透過備份檔 `Dataset.backup` 還原資料庫，包含所有必要的資料表結構與初始資料。
+    - 還原後，可透過伺服器與客戶端程式進行資料查詢與操作。
+
 
 ## 開發環境
 - Windows 11
