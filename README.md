@@ -64,8 +64,21 @@
 - 行銷及營運經理可以查詢所有的品牌資訊。
 
 ## 使用方法
+1. 使用備份檔 `db.backup` 還原資料庫
+2. 打開s.ipynb，將以下設定更改成自己pgadmin的設定
+```python
+conn = psycopg2.connect(
+    dbname='postgres',  # Your dbname is 'test'
+    user='postgres',
+    password='123456',
+    host='localhost',
+    port='5432'  # Default PostgreSQL port
+)
+```
 
-## 技術細節
+3. 下載s.ipynb跟c.ipynb成s.py跟c.py
+4. 接著就可以在多個cmd上輸入s.py跟c.py即可開始執行(要在同一層資料夾)，執行時要先在s.py那邊的cmd輸入port number，然後再在c.py輸入一樣的port number，接下來在client端按照提示操作即可。
+5. 若要測試會員功能，需要ID和密碼，這裡提供幾個選項(id, password)=(185, 6Lwgr0El) or (30897, n3EtMGHv)；如果是其他三個角色，登入密碼請輸入’starwars’。
 
 ## 程式說明
 
